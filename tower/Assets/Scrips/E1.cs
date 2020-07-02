@@ -26,14 +26,25 @@ public class E1 : MonoBehaviour
         {
             index++;
         }
-        //if (index > positions.Length - 1)
-        //{
-        //    ReachDestination();
-        //}
-        //void ReachDestination()
-        //{
-        //    GameManager.Instance.Failed();
-        //    GameObject.Destroy(this.gameObject);
-        //}
+        if (index > positions.Length - 1)
+        {
+            ReachDestination();
+        }
+        void ReachDestination()
+        {
+            //Gamemanage.Instance.Failed();
+            GameObject.Destroy(this.gameObject);
+        }
+    }
+    void ReachDestination()
+    {
+        //Gamemanage.Instance.Failed();
+        GameObject.Destroy(this.gameObject);
+    }
+
+
+    void OnDestroy()
+    {
+        ESpawner.CountEnemyAlive--;
     }
 }
