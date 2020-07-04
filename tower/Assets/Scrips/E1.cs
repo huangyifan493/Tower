@@ -21,7 +21,6 @@ public class E1 : MonoBehaviour
     }
      void Update()
     {
-
         Move();
     }
     void Move()
@@ -41,7 +40,7 @@ public class E1 : MonoBehaviour
     
     void ReachDestination()
     {
-        Gamemanage.Instance.Failed();
+        GameManager.Instance.Failed();
         GameObject.Destroy(this.gameObject);
     }
 

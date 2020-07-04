@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Gamemanage : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject endUI;
     public Text endMessage;
-
-    public static Gamemanage Instance;
+    public static GameManager Instance;
     private ESpawner enemySpawner;
+
     void Awake()
     {
         Instance = this;

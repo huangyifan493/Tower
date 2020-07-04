@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour
     public float damageRate = 70;
     public LineRenderer laserRenderer;
     public GameObject laserEffect;
+
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Enemy")

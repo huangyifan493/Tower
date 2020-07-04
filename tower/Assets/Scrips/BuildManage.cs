@@ -10,20 +10,25 @@ public class BuildManage : MonoBehaviour
     public TDate T2Date;
     public TDate T3Date;
     private TDate selectedTData;
+    //private GameObject selectedTurretGo;
     private int money = 1000;
     public Text moneytext;
     public Animator moneyAnimator;
+    private Cube selectedCube;
+    public GameObject upgradeCanvas;
+    private Animator upgradeCanvasAnimator;
+    public Button buttonUpgrade;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    void ChangeMoney(int change =0)
+   void ChangeMoney(int change =0)
     {
         money += change;
         moneytext.text = "￥" + money;
     }
-
+    
+    void Start()
+    {
+        upgradeCanvasAnimator = upgradeCanvas.GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +58,29 @@ public class BuildManage : MonoBehaviour
                             moneyAnimator.SetTrigger("Flicker");
                         }
                     }
+                    else if (cube.turretGo != null)
+                    {
+
+                        // 升级处理
+
+                        //if (mapCube.isUpgraded)
+                        //{
+                        //    ShowUpgradeUI(mapCube.transform.position, true);
+                        //}
+                        //else
+                        //{
+                        //    ShowUpgradeUI(mapCube.transform.position, false);
+                        //}
+                        if (cube == selectedCube && upgradeCanvas.activeInHierarchy)
+                        {
+                            StartCoroutine(HideUpgradeUI());
+                        }
+                        else
+                        {
+                            ShowUpgradeUI(cube.transform.position, cube.isUpgraded);
+                        }
+                        selectedCube = cube;
+                    }
                 }
             }
         }
@@ -78,5 +106,41 @@ public class BuildManage : MonoBehaviour
         {
             selectedTData = T3Date;
         }
+    }
+    void ShowUpgradeUI(Vector3 pos, bool isDisableUpgrade = false)
+    {
+        StopCoroutine("HideUpgradeUI");
+        upgradeCanvas.SetActive(false);
+        upgradeCanvas.SetActive(true);
+        upgradeCanvas.transform.position = pos;
+        buttonUpgrade.interactable = !isDisableUpgrade;
+    }
+
+    IEnumerator HideUpgradeUI()
+    {
+        upgradeCanvasAnimator.SetTrigger("Hide");
+        //upgradeCanvas.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
+        upgradeCanvas.SetActive(false);
+    }
+
+    public void OnUpgradeButtonDown()
+    {
+        if (money >= selectedCube.turretData.costUpgraded)
+        {
+            ChangeMoney(-selectedCube.turretData.costUpgraded);
+            selectedCube.UpgradeTurret();
+        }
+        else
+        {
+            moneyAnimator.SetTrigger("Flicker");
+        }
+
+        StartCoroutine(HideUpgradeUI());
+    }
+    public void OnDestroyButtonDown()
+    {
+        selectedCube.DestroyTurret();
+        StartCoroutine(HideUpgradeUI());
     }
 }

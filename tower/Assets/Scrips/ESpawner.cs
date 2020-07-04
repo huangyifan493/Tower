@@ -12,6 +12,7 @@ public class ESpawner : MonoBehaviour
 
     void Start()
     {
+         
         coroutine = StartCoroutine(SpawnEnemy());
     }
     public void Stop()
@@ -20,6 +21,7 @@ public class ESpawner : MonoBehaviour
     }
     IEnumerator SpawnEnemy()
     {
+        //yield return new WaitForSeconds(3.0f);
         foreach (Wave wave in waves)
         {
             for (int i = 0; i < wave.count; i++)
@@ -39,6 +41,6 @@ public class ESpawner : MonoBehaviour
         {
             yield return 0;
         }
-        Gamemanage.Instance.Win();
+        GameManager.Instance.Win();
     }
 }

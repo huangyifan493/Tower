@@ -13,7 +13,6 @@ public class Cube : MonoBehaviour
     public bool isUpgraded = false;
 
     public GameObject buildEffect;
-
     private Renderer renderer;
 
     void Start()
@@ -25,7 +24,7 @@ public class Cube : MonoBehaviour
     {
         this.turretData = turretData;
         isUpgraded = false;
-        /*turretGo = */GameObject.Instantiate(turretData.turretPrefab, transform.position, Quaternion.identity);
+        turretGo = GameObject.Instantiate(turretData.turretPrefab, transform.position, Quaternion.identity);
         GameObject effect = GameObject.Instantiate(buildEffect, transform.position, Quaternion.identity);
         Destroy(effect, 1.5f);
     }

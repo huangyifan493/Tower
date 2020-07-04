@@ -66,7 +66,8 @@
     <Compile Include="Assets\Scrips\Cube.cs" />
     <Compile Include="Assets\Scrips\E1.cs" />
     <Compile Include="Assets\Scrips\ESpawner.cs" />
-    <Compile Include="Assets\Scrips\Gamemanage.cs" />
+    <Compile Include="Assets\Scrips\GameManager.cs" />
+    <Compile Include="Assets\Scrips\GameMenu.cs" />
     <Compile Include="Assets\Scrips\TDate.cs" />
     <Compile Include="Assets\Scrips\Turret.cs" />
     <Compile Include="Assets\Scrips\ViewControl.cs" />
