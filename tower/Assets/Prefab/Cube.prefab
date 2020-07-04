@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4672946346863843820}
   - component: {fileID: 4672946346863843821}
   - component: {fileID: 4672946346863843826}
+  - component: {fileID: 7292925543928456489}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -91,3 +92,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7292925543928456489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672946346863843824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd0b07f7ffe9f6c4bba5e562989968de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretGo: {fileID: 0}
+  buildEffect: {fileID: 1005966274072046390, guid: 01e61caa90089ec4a87d26876b934748,
+    type: 3}

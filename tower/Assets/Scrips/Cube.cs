@@ -1,24 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Cube : MonoBehaviour
 {
     [HideInInspector]
-    public GameObject turretGo;
-    // Start is called before the first frame update
+    public GameObject turretGo;//保存当前cube身上的炮台
+    [HideInInspector]
+    public TDate turretData;
+    [HideInInspector]
+    public bool isUpgraded = false;
+
+    public GameObject buildEffect;
+
+    private Renderer renderer;
+
     void Start()
     {
-        
+        renderer = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuildTurret(TDate turretData)
     {
-        
+        this.turretData = turretData;
+        isUpgraded = false;
+        /*turretGo = */GameObject.Instantiate(turretData.turretPrefab, transform.position, Quaternion.identity);
+        GameObject effect = GameObject.Instantiate(buildEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
     }
-    public  void BuildTurret(GameObject turretPrefab)
+
+    public void UpgradeTurret()
     {
-        GameObject.Instantiate(turretPrefab, transform.position, Quaternion.identity);
+        if (isUpgraded == true) return;
+
+        Destroy(turretGo);
+        isUpgraded = true;
+        turretGo = GameObject.Instantiate(turretData.turretUpgradedPrefab, transform.position, Quaternion.identity);
+        GameObject effect = GameObject.Instantiate(buildEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
+    }
+
+    public void DestroyTurret()
+    {
+        Destroy(turretGo);
+        isUpgraded = false;
+        turretGo = null;
+        turretData = null;
+        GameObject effect = GameObject.Instantiate(buildEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1.5f);
+    }
+
+    void OnMouseEnter()
+    {
+
+        if (turretGo == null && EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            renderer.material.color = Color.red;
+        }
+    }
+    void OnMouseExit()
+    {
+        renderer.material.color = Color.white;
     }
 }

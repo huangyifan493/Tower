@@ -39,13 +39,13 @@ public class BuildManage : MonoBehaviour
                 {
                     Cube cube = hit.collider.GetComponent<Cube>();
 
-                    if (/*selectedTData != null && */cube.turretGo == null)
+                    if (selectedTData != null && cube.turretGo == null)
                     {
                         //可以创建 
                         if (money > selectedTData.cost)
                         {
                             ChangeMoney(-selectedTData.cost);
-                            cube.BuildTurret(selectedTData.turretPrefab);
+                            cube.BuildTurret(selectedTData);
                         }
                         else
                         {
