@@ -5,23 +5,35 @@ using UnityEngine.UI;
 
 public class E1 : MonoBehaviour
 {
-    public float speed = 10;
+    public GameObject explosionEffect;
+    public float speed = 8;
     public float hp = 150;
     private float totalHp;
-    public GameObject explosionEffect;
     public Slider hpSlider;
     private Transform[] positions;
     private int index = 0;
+    public Transform forword;
+    //private BuildManage addmoney;
+   
 
     void Start()
     {
+        
         totalHp = hp;
         hpSlider = GetComponentInChildren<Slider>();
         positions = WayPoint.positions;
     }
      void Update()
     {
+        
+        if ( positions[0] != null)
+        {
+            Vector3 targetPosition = positions[index].transform.position;
+            targetPosition.y = forword.position.y;
+            forword.LookAt(targetPosition);
+        }
         Move();
+
     }
     void Move()
     {
@@ -37,6 +49,7 @@ public class E1 : MonoBehaviour
         }
         
     }
+
     
     void ReachDestination()
     {
@@ -47,6 +60,8 @@ public class E1 : MonoBehaviour
     void OnDestroy()
     {
         ESpawner.CountEnemyAlive--;
+        GameManager.addmoney=50;
+
     }
 
     public void TakeDamage(float damage)
@@ -56,7 +71,7 @@ public class E1 : MonoBehaviour
         hpSlider.value = (float)hp / totalHp;
         if (hp <= 0)
         {
-            Die();            
+            Die();
         }
     }
 
@@ -64,6 +79,7 @@ public class E1 : MonoBehaviour
     {
         GameObject effect = GameObject.Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(effect, 1.5f);
+        
         Destroy(this.gameObject);
     }
 }

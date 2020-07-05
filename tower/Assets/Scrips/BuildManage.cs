@@ -11,22 +11,18 @@ public class BuildManage : MonoBehaviour
     public TDate T3Date;
     private TDate selectedTData;
     //private GameObject selectedTurretGo;
-    private int money = 1000;
-    public Text moneytext;
     public Animator moneyAnimator;
     private Cube selectedCube;
     public GameObject upgradeCanvas;
     private Animator upgradeCanvasAnimator;
     public Button buttonUpgrade;
     // Start is called before the first frame update
-   void ChangeMoney(int change =0)
-    {
-        money += change;
-        moneytext.text = "￥" + money;
-    }
+    public GameManager gameManager;
+
     
     void Start()
     {
+        gameManager = GetComponent<GameManager>();
         upgradeCanvasAnimator = upgradeCanvas.GetComponent<Animator>();
     }
     // Update is called once per frame
@@ -47,9 +43,9 @@ public class BuildManage : MonoBehaviour
                     if (selectedTData != null && cube.turretGo == null)
                     {
                         //可以创建 
-                        if (money > selectedTData.cost)
+                        if (gameManager.money > selectedTData.cost)
                         {
-                            ChangeMoney(-selectedTData.cost);
+                            gameManager.ChangeMoney(-selectedTData.cost);
                             cube.BuildTurret(selectedTData);
                         }
                         else
@@ -126,9 +122,9 @@ public class BuildManage : MonoBehaviour
 
     public void OnUpgradeButtonDown()
     {
-        if (money >= selectedCube.turretData.costUpgraded)
+        if (gameManager.money >= selectedCube.turretData.costUpgraded)
         {
-            ChangeMoney(-selectedCube.turretData.costUpgraded);
+            gameManager.ChangeMoney(-selectedCube.turretData.costUpgraded);
             selectedCube.UpgradeTurret();
         }
         else

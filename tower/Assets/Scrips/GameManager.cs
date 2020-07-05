@@ -10,11 +10,36 @@ public class GameManager : MonoBehaviour
     public Text endMessage;
     public static GameManager Instance;
     private ESpawner enemySpawner;
+    public  int money = 500;
+    public  Text moneytext;
 
+    public static int addmoney = 0;
+
+
+    public  void ChangeMoney(int change = 0)
+    {
+        //if (addmoney!= 0)
+        //{
+        //    money += addmoney;
+        //    addmoney = 0;
+        //}
+        money += change;
+        moneytext.text = money.ToString();
+    }
     void Awake()
     {
+        
         Instance = this;
         enemySpawner = GetComponent<ESpawner>();
+    }
+    private void Update()
+    {
+        if (addmoney != 0)
+        {
+            ChangeMoney(addmoney);
+            addmoney = 0;
+            
+        }
     }
 
     public void Win()

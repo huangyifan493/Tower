@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Knight\scripts\rotator.cs" />
     <Compile Include="Assets\Scrips\BuildManage.cs" />
     <Compile Include="Assets\Scrips\Bullet.cs" />
     <Compile Include="Assets\Scrips\Cube.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Assets\Scrips\ViewControl.cs" />
     <Compile Include="Assets\Scrips\Wave.cs" />
     <Compile Include="Assets\Scrips\WayPoint.cs" />
+    <None Include="Assets\Knight\shaders\doublesidedshader.shader" />
+    <None Include="Assets\Fortress Gate_Free\ReadMe.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/onedrive/桌面/新建文件夹/tower/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
